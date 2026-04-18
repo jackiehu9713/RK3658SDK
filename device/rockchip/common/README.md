@@ -21,3 +21,5 @@ Rockchip Linux SDK for the Rockchip SOC boards
 4. Run "make" to build the images, logs saved at "output/log/"
 5. Flash the generated "output/firmware/update.img" to your device
 6. Boot your device and enjoy it
+
+Android 预编译库未包含!!!
