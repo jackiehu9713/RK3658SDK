@@ -1,0 +1,6 @@
+menuconfig BR2_PACKAGE_ALIENTEK
+    bool "alientek software developer's kit"
+    default n
+
+source "package/alientek/atk_installs/Config.in"
+source "package/alientek/qt_demo/systemui/Config.in"

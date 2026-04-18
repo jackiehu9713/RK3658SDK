@@ -1,0 +1,22 @@
+#!/bin/sh
+
+case "$1" in
+        start)
+                printf "start rknn_server"
+                start_rknn.sh &
+                ;;
+        stop)
+                printf "stop rknn_server"
+		killall start_rknn.sh > /dev/null 2>&1
+		killall rknn_server > /dev/null 2>&1
+                ;;
+        restart|reload)
+                printf "restart rknn_server"
+		restart_rknn.sh
+                ;;
+        *)
+                echo "Usage: $0 {start|stop|restart}"
+                exit 1
+esac
+exit 0
+

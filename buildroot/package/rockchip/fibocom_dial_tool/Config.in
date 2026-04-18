@@ -1,0 +1,5 @@
+config BR2_PACKAGE_FIBOCOM_DIAL_TOOL
+	bool "Fibocom-dial TooL for USB and PCIE of FIBOCOM wireless cellular modules"
+	default y
+	help
+	  Fibocom QMI Dial-up Tool.

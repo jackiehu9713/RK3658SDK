@@ -1,0 +1,34 @@
+From 371bfe44b199521734bec3e5fc4e160a0aaffe8d Mon Sep 17 00:00:00 2001
+From: dzm <dengzhimao@alientek.com>
+Date: Sat, 24 Feb 2024 11:39:35 +0800
+Subject: [PATCH] alientek fixed the usb mount script for rk
+
+---
+ usbmount.rules | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/usbmount.rules b/usbmount.rules
+index b919f12..6a00c55 100644
+--- a/usbmount.rules
++++ b/usbmount.rules
+@@ -1,12 +1,12 @@
+ # Rules for USBmount -*- conf -*-
+ 
+ SUBSYSTEM!="block", GOTO="usbmount_end"
+-ACTION=="remove", RUN+="/usr/share/usbmount/usbmount remove"
+-
+-ACTION!="add", GOTO="usbmount_end"
++ACTION!="add|remove", GOTO="usbmount_end"
+ ENV{ID_FS_TYPE}=="", GOTO="usbmount_end"
+ 
+-KERNEL=="mmcblk*", ATTRS{type}=="SD", RUN+="/usr/share/usbmount/usbmount add sd"
+-ENV{ID_BUS}=="usb", RUN+="/usr/share/usbmount/usbmount add usb"
++KERNEL=="mmcblk1*", RUN+="/usr/share/usbmount/usbmount $env{ACTION} sd"
++KERNEL=="sd*", RUN+="/usr/share/usbmount/usbmount $env{ACTION} usb"
++KERNEL=="nvme*", RUN+="/usr/share/usbmount/usbmount $env{ACTION} usb"
++ENV{ID_BUS}=="usb", RUN+="/usr/share/usbmount/usbmount $env{ACTION} usb"
+ 
+ LABEL="usbmount_end"
+-- 
+2.25.1
+

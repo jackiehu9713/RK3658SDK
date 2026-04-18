@@ -1,0 +1,46 @@
+PATH="/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
+
+start_restore()
+{
+    hostname=$(cat /etc/hostname)
+    if [ "$hostname" = "ATK-DLRK3588" ]; then
+	if [ -f "/var/lib/alsa/es8388-asound.state" ]; then
+		/usr/sbin/alsactl -f /var/lib/alsa/es8388-asound.state restore &
+	fi
+    fi
+    if [ "$hostname" = "ATK-DLRK356X" ]; then
+        if [ -f "/var/lib/alsa/rk809-asound.state" ]; then
+                /usr/sbin/alsactl -f /var/lib/alsa/rk809-asound.state restore &
+        fi
+    fi
+}
+
+stop_restore()
+{
+	echo -n ""
+}
+
+case "$1" in
+	start)
+		echo -n "ALSA: Restoring mixer setting......"
+		start_restore
+		echo "done."
+		;;
+	stop)
+		stop_restore
+		echo "done."
+		;;
+	restart|reload)
+		echo -n "stoping restore... "
+		stop_restore && sleep .3
+		echo "done."
+		echo -n "starting restore... "
+		start_restore
+		echo "done."
+		;;
+	*)
+	echo "Usage: $0 {start|stop|restart}"
+		exit 1
+esac
+exit 0
+

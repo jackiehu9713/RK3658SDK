@@ -1,0 +1,8 @@
+if BR2_PACKAGE_ALIENTEK
+config BR2_PACKAGE_ATK_INSTALLS
+        bool "alientek installs"
+        default n
+        help
+            alientek installs
+
+endif #BR2_PACKAGE_ATK_INSTALLS

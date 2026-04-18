@@ -1,0 +1,6 @@
+config BR2_PACKAGE_PYTHON_RUAMEL_YAML_CLIB
+	bool "python-ruamel-yaml-clib"
+	help
+	ruamel.yaml.clib is the C based reader/scanner and emitter for ruamel.yaml
+
+	  https://pypi.org/project/ruamel.yaml.clib

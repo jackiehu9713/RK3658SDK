@@ -1,0 +1,16 @@
+if BR2_PACKAGE_ALIENTEK
+config BR2_PACKAGE_SYSTEMUI
+        bool "alientek systemui qt demo"
+        depends on BR2_PACKAGE_QT5
+        depends on BR2_PACKAGE_QT5BASE
+        depends on BR2_PACKAGE_QT5DECLARATIVE
+        depends on BR2_PACKAGE_QT5MULTIMEDIA
+        depends on BR2_PACKAGE_QT5VIRTUALKEYBOARD
+        depends on BR2_PACKAGE_QT5REMOTEOBJECTS
+	depends on BR2_PACKAGE_ATK_INSTALLS
+        depends on BR2_PACKAGE_ALIENTEK
+
+        help
+          ALIENTEK Qt Demo application based on QT
+
+endif
